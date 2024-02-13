@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Django Application Results</title>
+  </head>
+  <body>
+    <h1>Django Application Results</h1>
+    
+    <!-- Search box and button -->
+    <form action="{% url 'show' %}" method="post">
+      <label for="search">Search:</label>
+      <input type="text" id="search" name="search">
+      <input type="submit" value="Search">
+    </form>
+    
+    <!-- Radio button options -->
+    <form>
+      <input type="radio" id="algorithm1" name="algorithm" value="algorithm1">
+      <label for="algorithm1">Algorithm 1</label><br>
+      <input type="radio" id="algorithm2" name="algorithm" value="algorithm2">
+      <label for="algorithm2">Algorithm 2</label><br>
+    </form>
+
+    <!-- Results table -->
+    <table>
+      <tr>
+        <th>Score</th>
+        <th>Title</th>
+        <th>Text</th>
+        <th>URL</th>
+      </tr>
+      {% for result in UIPagesList %}
+      <tr>
+        <td>{{ result.Score }}</td>
+        <td>{{ result.Title }}</td>
+        <td>{{ result.text }}</td>
+        <td>{{ result.Url }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

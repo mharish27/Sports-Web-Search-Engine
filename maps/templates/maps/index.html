@@ -1,0 +1,282 @@
+<!-- <!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Search Page</title>
+    <style>
+      body {
+        background-image: url('C:/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      input[type="text"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      input[type="submit"] {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: blue;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      
+      input[type="submit"]:hover,
+      input[type="submit"]:focus {
+        background-color: navy;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+      
+      a {
+        display: block;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        color: blue;
+        text-decoration: none;
+      }
+      
+      div {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="{% url 'show' %}" method="post">
+      {% csrf_token %}
+      <input class="search_textbox" type="text" name="handle" value="{{myQuery}}" placeholder="Enter your query...">
+      <input type="submit" value="Lucene">
+      <input type="submit" value="BERT">
+    </form>
+
+    {% if flag %}
+      <a href="{{url1}}">{{url1}}</a>
+      <div>{{sentence1}}...</div>
+      <a href="{{url2}}">{{url2}}</a>
+      <div>{{sentence2}}...</div>
+      <a href="{{url3}}">{{url3}}</a>
+      <div>{{sentence3}}...</div>
+    {% endif %}
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en-US">
+  
+  <head>
+    <meta charset="utf-8" />
+   <style>
+    /* body, html {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .bg-image {
+      /* The image used */
+      /* background-image: url("bg.jpg"); */
+
+      /* Add the blur effect */
+      /* filter: blur(8px); */
+      /* -webkit-filter: blur(8px); */
+
+      /* Full height */
+      /* height: 100%; */
+
+      /* Center and scale the image nicely */
+      /* background-position: center; */
+      /* background-repeat: no-repeat; */
+      /* background-size: cover; */
+    /* } */
+
+    /* Position text in the middle of the page/image */
+    /* .bg-text {
+      background-color: rgb(0,0,0); 
+      background-color: rgb(194, 212, 247);
+      color: white;
+      font-weight: bold;
+      border: 3px solid #f1f1f1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 80%;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .result_list {
+      background-color: grey;
+    }  */
+    /* New Chatgpt styles */
+    body {
+        background-image: url('/mysite_demo/maps/templates/maps/bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* body {
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+.bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.form {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.form input[type="text"] {
+  border-radius: 3px;
+  border: 1px solid #cccccc;
+  font-size: 16px;
+  padding: 8px 10px;
+  width: 400px;
+  margin-right: 10px;
+}
+
+.form label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.form input[type="submit"] {
+  background-color: #4285f4;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 16px;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #2a75e6;
+}
+
+.result_section {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.result_section > div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.result_section a {
+  color: #1a0dab;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.result_section p {
+  font-size: 16px;
+  color: #545454;
+  margin: 5px 0 0 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+.result_section p:first-child {
+  margin-top: 10px;
+}
+
+.result_section p:last-child {
+  margin-bottom: 0;
+}
+
+.result_section p span {
+  font-size: 12px;
+  color: #545454;
+}
+
+.result_section hr {
+  border: none;
+  border-top: 1px solid #f2f2f2;
+  margin: 30px 0;
+}
+
+</style> 
+</head>
+<body>
+
+<div class="bg-text">
+  <h1> SPORTS ENGINE</h1>
+  <h3> Sports information at a click of a button.</h3>
+    <form action="{% url 'show' %}" method="post">
+        {% csrf_token %}
+        Query: <input size="30" type="text" name="handle" required value={{myQuery}} ><br>
+        <label for="lucene"><input name="choice" class="selection" type="radio" value="lucene" id="lucene" required/>Lucene</label>
+        <label for="bert"><input name="choice" class="selection" type="radio" value="bert" id="bert" required/>BERT</label>
+        
+        <input type="submit" value="Submit">
+        <span></span>
+    </form>
+    {% if flag %}
+    <hr/>
+    <div id="result_section">
+      <div>
+        <a href={{url1}}>{{title1}}</a>
+        <p class="result_list">{{sentence1}} . . . . . . . . . . . </p>
+      </div>
+      
+      <div>
+      <a href={{url2}}>{{title2}}</a>
+      <p class="result_list">{{sentence2}} . . . . . . . . . . .</p>
+      </div>
+
+      <div>
+      <a href={{url3}}>{{title3}}</a>
+      <p class="result_list">{{sentence3}} . . . . . . . . . . .</p>
+      </div>  
+    </div>
+    {% endif %}
+   </div>
+  </body>
+</html>
